@@ -14,7 +14,6 @@ Url:		http://github.com/zeromq/pyzmq
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libzeromq 
 BuildRequires:	zeromq-devel
-BuildRequires:	python-sphinx
 BuildRequires:	python-nose
 BuildRequires:	python-devel
 
@@ -25,7 +24,6 @@ fast messaging implementation.
 %prep
 %setup -q -n %{module}-%{version}
 %__python setup.py build
-%make -C docs html
 
 %install
 %__rm -rf %{buildroot}
@@ -41,4 +39,4 @@ popd
 
 %files -f FILE_LIST
 %defattr(-,root,root)
-%doc COPYING* README.rst docs/_build/html/
+%doc COPYING* README.rst
