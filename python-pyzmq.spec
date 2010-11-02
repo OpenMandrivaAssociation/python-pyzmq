@@ -16,6 +16,7 @@ Requires:	libzeromq
 BuildRequires:	zeromq-devel
 BuildRequires:	python-sphinx
 BuildRequires:	python-nose
+BuildRequires:	python-devel
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
