@@ -1,7 +1,7 @@
 %define module	pyzmq
 %define name	python-%{module}
 %define version 2.0.10
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	Python bindings for zeromq
 Name:		%{name}
