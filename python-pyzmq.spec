@@ -17,7 +17,7 @@ BuildRequires:	zeromq-devel >= 2.1.0
 BuildRequires:	python-cython
 BuildRequires:	python-nose
 BuildRequires:	python-devel
-BuildRequires:	python-sphinx
+BuildRequires:	python-sphinx, python-matplotlib
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
