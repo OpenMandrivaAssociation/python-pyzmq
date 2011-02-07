@@ -1,7 +1,7 @@
 %define module	pyzmq
 %define name	python-%{module}
-%define version 2.0.10.1
-%define release %mkrel 1
+%define version 2.1.1
+%define release %mkrel 0.git1ad1d0baa0c0
 
 Summary:	Python bindings for zeromq
 Name:		%{name}
@@ -12,10 +12,11 @@ License:	LGPLv3+
 Group:		Development/Python
 Url:		http://github.com/zeromq/pyzmq
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:	libzeromq 
-BuildRequires:	zeromq-devel
+Requires:	libzeromq >= 2.1.0
+BuildRequires:	zeromq-devel >= 2.1.0
 BuildRequires:	python-nose
 BuildRequires:	python-devel
+BuildRequires:	python-sphinx
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
@@ -28,6 +29,7 @@ fast messaging implementation.
 %install
 %__rm -rf %{buildroot}
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
+%make -C docs html
 
 %check
 pushd %{buildroot}%{py_platsitedir}
@@ -39,4 +41,4 @@ popd
 
 %files -f FILE_LIST
 %defattr(-,root,root)
-%doc COPYING* README.rst
+%doc COPYING* README.rst examples/ docs/build/html/
