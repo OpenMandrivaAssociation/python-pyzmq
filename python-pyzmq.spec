@@ -14,6 +14,7 @@ Url:		http://github.com/zeromq/pyzmq
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libzeromq >= 2.1.0
 BuildRequires:	zeromq-devel >= 2.1.0
+BuildRequires:	python-cython
 BuildRequires:	python-nose
 BuildRequires:	python-devel
 BuildRequires:	python-sphinx
