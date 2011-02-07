@@ -30,7 +30,9 @@ fast messaging implementation.
 %install
 %__rm -rf %{buildroot}
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
-%make -C docs html
+pushd docs
+PYTHONPATH=`dir -d ../build/lib*` make html
+popd
 
 %check
 pushd %{buildroot}%{py_platsitedir}
