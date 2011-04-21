@@ -1,6 +1,6 @@
 %define module	pyzmq
 %define name	python-%{module}
-%define version 2.1.1
+%define version 2.1.4
 %define release %mkrel 1
 
 Summary:	Python bindings for zeromq
@@ -12,8 +12,8 @@ License:	LGPLv3+
 Group:		Development/Python
 Url:		http://github.com/zeromq/pyzmq
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:	libzeromq >= 2.1.0
-BuildRequires:	zeromq-devel >= 2.1.0
+Requires:	libzeromq >= 2.1.4
+BuildRequires:	zeromq-devel >= 2.1.4
 BuildRequires:	python-cython
 #BuildRequires:	python-nose
 BuildRequires:	python-devel
