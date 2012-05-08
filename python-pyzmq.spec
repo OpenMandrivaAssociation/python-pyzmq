@@ -1,16 +1,17 @@
 %define module	pyzmq
 %define name	python-%{module}
-%define version 2.1.11
+%define version 2.2.0
 %define release %mkrel 1
 
 Summary:	Python bindings for zeromq
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Source0:	%{module}-%{version}.tar.gz
+Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
+Patch0:		doc-version-2.2.0.patch
 License:	LGPLv3+
 Group:		Development/Python
-Url:		http://github.com/zeromq/pyzmq
+Url:		http://github.com/zeromq/pyzmq/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libzeromq >= %{version}
 BuildRequires:	zeromq-devel >= %{version}
@@ -25,6 +26,9 @@ fast messaging implementation.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p0
+
+%build
 %__python setup.py build
 
 %install
