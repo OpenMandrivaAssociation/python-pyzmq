@@ -1,7 +1,7 @@
 %define module	pyzmq
 %define name	python-%{module}
 %define version 2.2.0.1
-%define	rel		1
+%define	rel		2
 %if %mdkversion < 201100
 %define release %mkrel %rel
 %else
