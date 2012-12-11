@@ -1,0 +1,11 @@
+--- zmq/core/constants.pyx.bak	2012-07-06 18:35:20.618374483 -0400
++++ zmq/core/constants.pyx	2012-07-06 18:36:23.801886645 -0400
+@@ -97,7 +97,7 @@
+ else:
+     int_sockopts.extend(switched)
+ 
+-if ZMQ_VERSION >= 202000:
++if ZMQ_VERSION >= 20200:
+     # sockopts new in 2.2.0
+     SNDTIMEO = ZMQ_SNDTIMEO
+     RCVTIMEO = ZMQ_RCVTIMEO
