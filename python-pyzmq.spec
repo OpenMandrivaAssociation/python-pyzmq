@@ -1,9 +1,11 @@
+%define __noautoprov	'.*\.so\(\)'
+
 %define module	pyzmq
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
 Version:	2.2.0
-Release:	3
+Release:	4
 Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
 Patch0:		doc-version-2.2.0.patch
 Patch1:		fix-version-test-2.2.0.patch
@@ -16,6 +18,10 @@ BuildRequires:	python-cython
 BuildRequires:	python-devel
 BuildRequires:	python-sphinx
 BuildRequires:	python-matplotlib
+
+# required for make check
+BuildRequires:	python-tornado
+
 BuildRequires:	pkgconfig(lapack)
 
 %description
@@ -35,18 +41,22 @@ PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record
 pushd docs
 PYTHONPATH=`dir -d ../build/lib*` make html
 popd
+rm docs//build/html/.buildinfo
 
 # Temporarily disable tests:
-#%check
-#pushd %{buildroot}%{py_platsitedir}
-#nosetests
-#popd
+%check
+pushd %{buildroot}%{py_platsitedir}
+nosetests
+popd
 
 %files -f FILE_LIST
-%defattr(-,root,root)
 %doc COPYING* README.rst examples/ docs/build/html/
 
 %changelog
+* Wed Feb 13 2013 pcpa <paulo.cesar.pereira.de.andrade@gmail.com> - 2.2.0-4
+- Rebuild with updated dependencies.
+- Do not provide internal shared objects.
+
 * Sat Jul 07 2012 Lev Givon <lev@mandriva.org> 2.2.0-2
 + Revision: 808409
 - Add patch for pyzmq issue #213 (broken version test).
