@@ -16,6 +16,7 @@ Requires:	libzeromq >= %{version}
 BuildRequires:	zeromq-devel >= %{version}
 BuildRequires:	python-cython
 BuildRequires:	python-devel
+BuildRequires:	python-nose
 BuildRequires:	python-sphinx
 BuildRequires:	python-matplotlib
 
