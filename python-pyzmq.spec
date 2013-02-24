@@ -17,6 +17,7 @@ BuildRequires:	python-devel
 BuildRequires:	python-nose
 BuildRequires:	python-sphinx
 BuildRequires:	python-matplotlib
+BuildRequires:	python-parsing
 
 # required for make check
 BuildRequires:	python-tornado
