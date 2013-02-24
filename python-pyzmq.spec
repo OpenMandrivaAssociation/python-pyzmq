@@ -49,7 +49,7 @@ rm docs//build/html/.buildinfo
 #popd
 
 %files -f FILE_LIST
-%doc COPYING* README.rst examples/ docs/build/html/
+%doc COPYING* README.md examples/ docs/build/html/
 
 %changelog
 * Wed Feb 13 2013 pcpa <paulo.cesar.pereira.de.andrade@gmail.com> - 2.2.0-4
