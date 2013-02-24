@@ -18,6 +18,7 @@ BuildRequires:	python-nose
 BuildRequires:	python-sphinx
 BuildRequires:	python-matplotlib
 BuildRequires:	python-parsing
+BuildRequires:	python-gevent
 
 # required for make check
 BuildRequires:	python-tornado
@@ -42,10 +43,10 @@ popd
 rm docs//build/html/.buildinfo
 
 # Temporarily disable tests:
-%check
-pushd %{buildroot}%{py_platsitedir}
-nosetests
-popd
+#%check
+#pushd %{buildroot}%{py_platsitedir}
+#nosetests
+#popd
 
 %files -f FILE_LIST
 %doc COPYING* README.rst examples/ docs/build/html/
