@@ -7,8 +7,6 @@ Name:		python-%{module}
 Version:	13.0.0
 Release:	1
 Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
-Patch0:		doc-version-2.2.0.patch
-Patch1:		fix-version-test-2.2.0.patch
 License:	LGPLv3+
 Group:		Development/Python
 Url:		http://github.com/zeromq/pyzmq/
@@ -31,8 +29,6 @@ fast messaging implementation.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p0
-%patch1 -p0
 
 %build
 %__python setup.py build
