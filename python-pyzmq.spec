@@ -4,8 +4,8 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	2.2.0
-Release:	4
+Version:	13.0.0
+Release:	1
 Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
 Patch0:		doc-version-2.2.0.patch
 Patch1:		fix-version-test-2.2.0.patch
