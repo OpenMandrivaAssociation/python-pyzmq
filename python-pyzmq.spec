@@ -10,7 +10,7 @@ Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}
 License:	LGPLv3+
 Group:		Development/Python
 Url:		http://github.com/zeromq/pyzmq/
-Requires:	libzeromq >= %{version}
+Requires:	libzeromq >= 3.0.0
 BuildRequires:	zeromq-devel >= 3.0.0
 BuildRequires:	python-cython
 BuildRequires:	python-devel
