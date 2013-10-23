@@ -4,9 +4,9 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	13.0.0
-Release:	2
-Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
+Version:	13.1.0
+Release:	1
+Source0:	http://pypi.python.org/packages/source/p/pyzmq/pyzmq-%{version}.tar.gz
 License:	LGPLv3+
 Group:		Development/Python
 Url:		http://github.com/zeromq/pyzmq/
@@ -101,5 +101,6 @@ rm docs//build/html/.buildinfo
 * Tue Nov 02 2010 Lev Givon <lev@mandriva.org> 2.0.8-1mdv2011.0
 + Revision: 592558
 - import python-pyzmq
+
 
 

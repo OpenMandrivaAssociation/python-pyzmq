@@ -1,2 +1,4 @@
+removed_sources:
+  pyzmq-13.0.0.tar.gz: b36113d5792c51f3d68445edf6e418dbdc1abc9d
 sources:
-  "pyzmq-13.0.0.tar.gz": b36113d5792c51f3d68445edf6e418dbdc1abc9d
+  pyzmq-13.1.0.tar.gz: 775fcff7777d220f06f5ff9e531822d63a5671c0
