@@ -18,7 +18,7 @@ BuildRequires:	pkgconfig(python3)
 BuildRequires:	python3-distribute
 BuildRequires:	python3-nose
 BuildRequires:  pythonegg(cython)
-BuildRequires:  python3egg(cython)
+BuildRequires:  python3-cython
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
