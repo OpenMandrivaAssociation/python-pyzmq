@@ -1,106 +1,118 @@
-%define __noautoprov	'.*\.so\(\)'
-
 %define module	pyzmq
 
 Summary:	Python bindings for zeromq
+
 Name:		python-%{module}
 Version:	13.1.0
 Release:	1
-Source0:	http://pypi.python.org/packages/source/p/pyzmq/pyzmq-%{version}.tar.gz
-License:	LGPLv3+
+Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
+Source100:	%{name}.rpmlintrc
+License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
-Url:		http://github.com/zeromq/pyzmq/
-Requires:	libzeromq >= 3.0.0
-BuildRequires:	zeromq-devel >= 3.0.0
-BuildRequires:	python-cython
-BuildRequires:	python-devel
+Url:		http://github.com/zeromq/pyzmq
+BuildRequires:	pkgconfig(libzmq)
 BuildRequires:	python-nose
-BuildRequires:	python-sphinx
-BuildRequires:	python-matplotlib
-BuildRequires:	python-parsing
-BuildRequires:	python-gevent
-
-# required for make check
-BuildRequires:	python-tornado
-
-BuildRequires:	pkgconfig(lapack)
+BuildRequires:	python-setuptools
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python3-distribute
+BuildRequires:	python3-nose
+BuildRequires:  pythonegg(cython)
+BuildRequires:  python3egg(cython)
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
 fast messaging implementation.
 
+%package -n python3-%{module}
+Summary:        Software library for fast, message-based applications
+
+Group:          Development/Python
+
+%description -n python3-%{module}
+The 0MQ lightweight messaging kernel is a library which extends the
+standard socket interfaces with features traditionally provided by
+specialized messaging middle-ware products. 0MQ sockets provide an
+abstraction of asynchronous message queues, multiple messaging
+patterns, message filtering (subscriptions), seamless access to
+multiple transport protocols and more.
+
+This package contains the python 3 bindings.
+
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -c
+
+pushd %{module}-%{version}
+# forcibly regenerate the Cython-generated .c files:
+find zmq -name "*.c" -delete
+
+# remove bundled libraries
+rm -rf bundled
+for lib in zmq/eventloop/*.py; do
+    sed '/\/usr\/bin\/env/d' $lib > $lib.new &&
+    touch -r $lib $lib.new &&
+    mv $lib.new $lib
+done
+
+# remove excecutable bits
+chmod -x examples/pubsub/topics_pub.py
+chmod -x examples/pubsub/topics_sub.py
+popd
+
+mv %{module}-%{version} python2
+cp -r python2 python3
+
+pushd python2
+python setup.py cython
+popd
+
+pushd python3
+find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
+popd
 
 %build
-%__python setup.py build
+pushd python2
+CFLAGS="%{optflags}" python setup.py build
+popd
+
+pushd python3
+CFLAGS="%{optflags}" python3 setup.py build
+popd
 
 %install
-PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
-pushd docs
-PYTHONPATH=`dir -d ../build/lib*` make html
+pushd python3
+python3 setup.py install --skip-build --root %{buildroot}
 popd
-rm docs//build/html/.buildinfo
 
-# Temporarily disable tests:
-#%check
-#pushd %{buildroot}%{py_platsitedir}
-#nosetests
-#popd
+pushd python2
+python setup.py install --skip-build --root %{buildroot}
+popd
 
-%files -f FILE_LIST
-%doc COPYING* README.md examples/ docs/build/html/
+%check
+rm python2/zmq/__*
+rm python3/zmq/__*
 
-%changelog
-* Wed Feb 13 2013 pcpa <paulo.cesar.pereira.de.andrade@gmail.com> - 2.2.0-4
-- Rebuild with updated dependencies.
-- Do not provide internal shared objects.
+pushd python2
+PYTHONPATH=%{buildroot}%{py_platsitedir} \
+ python setup.py test
+popd
 
-* Sat Jul 07 2012 Lev Givon <lev@mandriva.org> 2.2.0-2
-+ Revision: 808409
-- Add patch for pyzmq issue #213 (broken version test).
+pushd python3
+PYTHONPATH=%{buildroot}%{py3_platsitedir} \
+ %{__python3} setup.py test
+popd
 
-* Tue May 08 2012 Lev Givon <lev@mandriva.org> 2.2.0-1
-+ Revision: 797611
-- Update to 2.2.0.
+rm -rf %{buildroot}%{py_platsitedir}/zmq/tests
+rm -rf %{buildroot}%{py3_platsitedir}/zmq/tests
 
-* Mon Dec 19 2011 Lev Givon <lev@mandriva.org> 2.1.11-1
-+ Revision: 743817
-- Update to 2.1.11.
+%files
+%doc python2/README.md python2/COPYING.* python2/examples/
+%{py_platsitedir}/%{module}-*.egg-info
+%{py_platsitedir}/zmq
 
-* Tue Aug 30 2011 Lev Givon <lev@mandriva.org> 2.1.9-1
-+ Revision: 697498
-- Update to 2.1.9.
-
-* Sun May 15 2011 Lev Givon <lev@mandriva.org> 2.1.7-1
-+ Revision: 674734
-- Update to 2.1.7.
-
-* Thu Apr 21 2011 Lev Givon <lev@mandriva.org> 2.1.4-1
-+ Revision: 656498
-- Update to 2.1.4.
-
-* Thu Mar 03 2011 Lev Givon <lev@mandriva.org> 2.1.1-1
-+ Revision: 641531
-- Update to 2.1.1.
-
-* Mon Feb 07 2011 Lev Givon <lev@mandriva.org> 2.1.1-0.git1ad1d0baa0c0
-+ Revision: 636740
-- Update to 2.1.1 git revision 1ad1d0baa0c0.
-- Update to 2.0.10.1.
-
-* Sun Jan 30 2011 Lev Givon <lev@mandriva.org> 2.0.10_1-1
-+ Revision: 634029
-- Update to 2.0.10-1.
-
-* Tue Nov 16 2010 Lev Givon <lev@mandriva.org> 2.0.10-2mdv2011.0
-+ Revision: 598119
-- Bump release to force rebuild.
-- Update to 2.0.10.
-
-* Tue Nov 02 2010 Lev Givon <lev@mandriva.org> 2.0.8-1mdv2011.0
-+ Revision: 592558
-- import python-pyzmq
-
+%files -n python3-%{module}
+%doc python3/README.md python3/COPYING.* python3/examples/
+%{py3_platsitedir}/%{module}-*.egg-info
+%{py3_platsitedir}/zmq
 
 
