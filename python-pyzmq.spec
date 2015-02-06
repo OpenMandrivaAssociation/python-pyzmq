@@ -4,7 +4,7 @@ Summary:	Python bindings for zeromq
 
 Name:		python-%{module}
 Version:	14.4.1
-Release:	1
+Release:	2
 Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 License:	LGPLv3+ and ASL 2.0 and BSD
