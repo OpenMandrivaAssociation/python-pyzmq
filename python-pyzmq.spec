@@ -19,18 +19,17 @@ BuildRequires:	python3-distribute
 BuildRequires:	python3-nose
 BuildRequires:  pythonegg(cython)
 BuildRequires:  python3-cython
-%rename python3-%{module}
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
 fast messaging implementation.
 
-%package -n python2-%{module}
+%package -n python3-%{module}
 Summary:        Software library for fast, message-based applications
 
 Group:          Development/Python
 
-%description -n python2-%{module}
+%description -n python3-%{module}
 The 0MQ lightweight messaging kernel is a library which extends the
 standard socket interfaces with features traditionally provided by
 specialized messaging middle-ware products. 0MQ sockets provide an
@@ -38,7 +37,7 @@ abstraction of asynchronous message queues, multiple messaging
 patterns, message filtering (subscriptions), seamless access to
 multiple transport protocols and more.
 
-This package contains the python 2 bindings.
+This package contains the python 3 bindings.
 
 %prep
 %setup -q -c
@@ -70,7 +69,7 @@ popd
 
 pushd python3
 find . -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
-python setup.py cython
+python3 setup.py cython
 popd
 
 %build
@@ -96,7 +95,7 @@ rm python2/zmq/__*
 rm python3/zmq/__*
 
 pushd python2
-PYTHONPATH=%{buildroot}%{py2_platsitedir} \
+PYTHONPATH=%{buildroot}%{py_platsitedir} \
  python2 setup.py test
 popd
 
@@ -116,9 +115,9 @@ rm -rf %{buildroot}%{py3_platsitedir}/zmq/tests
 %{py_platsitedir}/%{module}-*.egg-info
 %{py_platsitedir}/zmq
 
-%files -n python2-%{module}
+%files -n python3-%{module}
 %doc python2/README.md python2/COPYING.* python2/examples/
-%{py2_platsitedir}/%{module}-*.egg-info
-%{py2_platsitedir}/zmq
+%{py3_platsitedir}/%{module}-*.egg-info
+%{py3_platsitedir}/zmq
 
 
