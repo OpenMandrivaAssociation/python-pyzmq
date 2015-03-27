@@ -3,9 +3,9 @@
 Summary:	Python bindings for zeromq
 
 Name:		python-%{module}
-Version:	14.4.1
-Release:	2
-Source0:	http://pypi.python.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
+Version:	14.5.0
+Release:	1
+Source0:	http://pypi.python.org/packages/source/p/pyzmq/pyzmq-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
@@ -104,7 +104,7 @@ popd
 # tests are currently broken for python 3.x
 pushd python3
 PYTHONPATH=%{buildroot}%{py3_platsitedir} \
- %{__python3} setup.py test
+ python3 setup.py test
 popd
 %endif
 
@@ -120,5 +120,3 @@ rm -rf %{buildroot}%{py3_platsitedir}/zmq/tests
 %doc python2/README.md python2/COPYING.* python2/examples/
 %{py2_platsitedir}/%{module}-*.egg-info
 %{py2_platsitedir}/zmq
-
-

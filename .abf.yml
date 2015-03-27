@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   pyzmq-14.4.1.tar.gz: 336e252846d3c1005ac51aaf0587ec756dc7ca99
+sources:
+  pyzmq-14.5.0.tar.gz: 1dced02ea8527b5870ffdbe835d096aca5c01d2a
