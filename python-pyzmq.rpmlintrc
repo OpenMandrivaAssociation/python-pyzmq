@@ -1,3 +1,0 @@
-# platform-dependent threated as private obj
-addFilter("private-shared-object-provides")
-addFilter("devel-file-in-non-devel-package")
