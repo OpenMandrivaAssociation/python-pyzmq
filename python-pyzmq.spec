@@ -2,7 +2,7 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	21.0.1
+Version:	22.3.0
 Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
