@@ -2,7 +2,7 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	22.3.0
+Version:	25.1.1
 Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
@@ -11,7 +11,7 @@ Source0:	https://github.com/zeromq/pyzmq/archive/v%{version}.tar.gz?/%{module}-%
 BuildRequires:	pkgconfig(libzmq)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python-nose
-BuildRequires:	python-cython
+BuildRequires:	python-cython0
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
@@ -20,7 +20,7 @@ fast messaging implementation.
 #------------------------------------------------------------------
 
 %files
-%{py_platsitedir}/%{module}-*.egg-info
+%{py_platsitedir}/%{module}-*.*-info
 %{py_platsitedir}/zmq
 
 #------------------------------------------------------------------
