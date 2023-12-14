@@ -2,8 +2,8 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	25.1.1
-Release:	2
+Version:	25.1.2
+Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
 Url:		http://zguide.zeromq.org/py:all
