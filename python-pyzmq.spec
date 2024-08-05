@@ -1,8 +1,9 @@
+%undefine _debugsource_packages
 %define module pyzmq
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	25.1.2
+Version:	26.1.0
 Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
@@ -10,8 +11,9 @@ Url:		http://zguide.zeromq.org/py:all
 Source0:	https://github.com/zeromq/pyzmq/archive/v%{version}.tar.gz?/%{module}-%{version}.tar.gz
 BuildRequires:	pkgconfig(libzmq)
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python-nose
-BuildRequires:	python-cython
+BuildRequires:	python%{pyver}dist(nose)
+BuildRequires:	python%{pyver}dist(cython)
+BuildRequires:	python%{pyver}dist(scikit-build-core)
 
 %description
 This package contains Python bindings for zeromq, a lightweight and
@@ -27,6 +29,7 @@ fast messaging implementation.
 
 %prep
 %setup -q -c
+%autopatch -p1
 
 pushd %{module}-%{version}
 # forcibly regenerate the Cython-generated .c files:
