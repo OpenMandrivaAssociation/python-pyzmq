@@ -7,7 +7,7 @@ Version:	26.1.0
 Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
-Url:		http://zguide.zeromq.org/py:all
+Url:		https://zguide.zeromq.org/py:all
 Source0:	https://github.com/zeromq/pyzmq/archive/v%{version}.tar.gz?/%{module}-%{version}.tar.gz
 BuildRequires:	pkgconfig(libzmq)
 BuildRequires:	pkgconfig(python)
