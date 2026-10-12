@@ -3,8 +3,8 @@
 
 Summary:	Python bindings for zeromq
 Name:		python-%{module}
-Version:	27.1.0
-Release:	3
+Version:	27.2.0
+Release:	1
 License:	LGPLv3+ and ASL 2.0 and BSD
 Group:		Development/Python
 URL:		https://github.com/zeromq/pyzmq
@@ -25,8 +25,8 @@ fast messaging implementation.
 
 %package devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}
-Requires:       python-devel
+Requires:	%{name} = %{EVRD}
+Requires:	pkgconfig(python)
 Requires:       zeromq-devel
 
 %description devel
